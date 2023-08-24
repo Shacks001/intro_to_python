@@ -2,22 +2,35 @@ import random
 import string
 
 
-def generate_password(length=12):
+def generate_random_password(length):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ""
 
-    lowercase_letters = string.ascii_lowercase
-    uppercase_letters = string.ascii_uppercase
-    digits = string.digits
-    special_characters = string.punctuation
-
-    all_characters = lowercase_letters + uppercase_letters + digits + special_characters
-
-    if length < 12:
-        length = 12
-
-    password = "".join(random.choice(all_characters) for _ in range(length))
+    for _ in range(length):
+        password += random.choice(characters)
 
     return password
 
 
-password = generate_password(16)
-print("Generated Password:", password)
+def generate_random_password_with_while(length):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ""
+    count = 0
+
+    while count < length:
+        password += random.choice(characters)
+        count += 1
+
+    return password
+
+
+# Specify the desired password length
+password_length = 12
+
+# Generate and print a random password using the for loop
+random_password_for = generate_random_password(password_length)
+print("Random Password (for loop):", random_password_for)
+
+# Generate and print a random password using the while loop
+random_password_while = generate_random_password_with_while(password_length)
+print("Random Password (while loop):", random_password_while)
